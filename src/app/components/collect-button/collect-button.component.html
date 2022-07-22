@@ -1,0 +1,23 @@
+<aside class="absolute top-4 right-4">
+    <button 
+    (click)="onCollectClick()"
+    class="border border-slate-300 rounded flex justify-center items-center p-3 text-pink-800">
+    
+    <ng-container *ngIf="!loading; else spinner">
+
+    <ng-container *ngIf="isCollected; then collect else notCollected" class="material-icons"></ng-container>
+    <ng-template #collect>
+        <span class="material-icons">check_circle</span>
+    </ng-template>
+    <ng-template #notCollected>
+        <span class="material-icons">add_circle</span>
+    </ng-template>
+</ng-container>
+
+<ng-container>
+<ng-template #spinner>
+    <span class="material-icons animate-spin">refresh</span>
+</ng-template>
+</ng-container>
+    </button>
+</aside>
