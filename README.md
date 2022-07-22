@@ -12,7 +12,8 @@ This app was created by @tildakallstrom (Tilda Källström) and @emil-h-uhlin (E
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
 
 ## Environment
-To get this project working, you need to add two files in the environment folder: environment.prod.ts and environment.ts.
+To get this project working, you need to first add a folder in the "src"-folder named "environments".
+To this folder, add two files in the environment folder: environment.prod.ts and environment.ts.
 
 ### environment.prod.ts
 This file should have the following:
