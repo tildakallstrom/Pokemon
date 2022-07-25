@@ -1,0 +1,18 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    transition: all .2s ease-in-out;
+    color: red;
+    font-size: 2em;
+    background-color: whitesmoke;
+    border-radius: 50px;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+   }
+
+   .scroll-to-top:hover {
+    cursor: pointer;
+    background-color: lightgray;
+   }
+   

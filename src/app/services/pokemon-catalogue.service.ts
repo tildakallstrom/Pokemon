@@ -32,7 +32,7 @@ export class PokemonCatalogueService {
 
   constructor(private readonly http: HttpClient) { }
   
-  offset: number = 0
+  offset: number = count
 
   private extractIdFromUrl(url: string): string {
     let start = url.length - 2;                       // url always ends with '/' so start at last digit
@@ -80,7 +80,7 @@ export class PokemonCatalogueService {
   
   public loadMorePokemon() :  void {
     const pokemon = StorageUtil.storageRead<Pokemon[]>(StorageKeys.Pokemon)
-    
+
     if (!pokemon) return;
 
     this._pokemon = pokemon.slice(0, this.offset += count)

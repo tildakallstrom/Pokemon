@@ -6,7 +6,7 @@
         <h1 class="text-2xl">{{ pokemon.name[0].toUpperCase() + pokemon.name.substring(1) }} </h1>
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" 
             (error)="setDefaultImage($event)" 
-            alt="Id: {{pokemon.id}}, Name: {{ pokemon.name}}"/>
+            alt="Id: {{pokemon.id}}, Name: {{ pokemon.name}}"
+        />
     </section>
-    
-</li> 
+</li>

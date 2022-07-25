@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { PokemonCatalogueService } from '../../services/pokemon-catalogue.service';
@@ -23,16 +24,19 @@ export class PokemonCatalougePage implements OnInit {
   }
 
   constructor(
-    private readonly pokemonCatalogueService: PokemonCatalogueService
+    private readonly pokemonCatalogueService: PokemonCatalogueService,
+    private readonly scroll: ViewportScroller
   ) { }
 
   ngOnInit(): void {
     this.pokemonCatalogueService.findAllPokemons()
   }
 
-  loadMorePokemon() {
+  loadMorePokemon(): void {
     this.pokemonCatalogueService.loadMorePokemon()
-    console.log("loaded more")
   }
 
+  scrollToTop(): void {
+    this.scroll.scrollToPosition([0,0])
+  }
 }
