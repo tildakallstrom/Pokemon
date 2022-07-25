@@ -26,6 +26,11 @@ export class TrainerPage{
     return [];  // no pokemon
   }
 
+  logout() {
+    StorageUtil.storageDelete(StorageKeys.Trainer)
+    location.reload()
+  }
+
   constructor(
     private trainerService: TrainerService
   ) { }

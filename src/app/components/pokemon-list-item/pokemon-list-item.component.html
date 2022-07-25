@@ -1,11 +1,12 @@
 <li *ngIf="pokemon" class="mb-3 shadow bg-slate-50 rounded relative">
     <app-collect-button [pokemon]="pokemon"></app-collect-button>
     <section class="p-4">
-    <!--    <img [src]="pokemon.image" [alt]="pokemon.name" class="block w-72"/> -->
     </section>
     <section class="p-4">
-        <h1 class="text-2xl">{{ pokemon.name }} </h1>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" />
+        <h1 class="text-2xl">{{ pokemon.name[0].toUpperCase() + pokemon.name.substring(1) }} </h1>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" 
+            (error)="setDefaultImage($event)" 
+            alt="Id: {{pokemon.id}}, Name: {{ pokemon.name}}"/>
     </section>
     
 </li> 

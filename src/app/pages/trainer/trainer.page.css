@@ -1,0 +1,21 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 100%;
+    margin: auto;
+}
+
+
+.logout {
+    float: right;
+    background-color: rgb(180, 1, 1);
+    border-radius: 10px;
+    color: white;
+    padding: 0.5em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+}
+
+.logout:hover {
+    background-color: rgb(112, 0, 0);
+}

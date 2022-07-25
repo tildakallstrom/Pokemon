@@ -1,6 +1,15 @@
 <header class="container mx-auto p-4">
-  <h1 class="text-3xl text-white">Welcome, </h1>
+  <div class="grid">
+    <div>
+      <h1 class="text-3xl text-white">Welcome, {{trainer!.username}}!</h1>
+    </div>
+    
+    <div class="right">
+      <button class="logout" (click)="logout()">logout</button>
+    </div>
+  </div>
 </header>
+  
 <main class="container mx-auto p-4">
 <h2 class="text-xl text-white">Your collection</h2>
 <app-pokemon-list [pokemon]="pokemon"></app-pokemon-list>

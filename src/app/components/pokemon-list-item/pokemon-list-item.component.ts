@@ -10,5 +10,9 @@ export class PokemonListItemComponent  {
 
   @Input() pokemon!: Pokemon;
 
+  setDefaultImage(event: Event) {
+    (event.target as HTMLImageElement).src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png"
+  }
+
   constructor() { }
 }

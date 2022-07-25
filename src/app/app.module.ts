@@ -13,6 +13,7 @@ import { PokemonListComponent } from './components/pokemon-list/pokemon-list.com
 import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CollectButtonComponent } from './components/collect-button/collect-button.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [ //components
@@ -31,7 +32,7 @@ import { CollectButtonComponent } from './components/collect-button/collect-butt
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

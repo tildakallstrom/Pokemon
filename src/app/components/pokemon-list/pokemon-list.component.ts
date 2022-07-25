@@ -10,5 +10,6 @@ export class PokemonListComponent  {
 
   @Input() pokemon: Pokemon[] = [];
 
-  constructor() { }
+  constructor() {
+   }
 }
