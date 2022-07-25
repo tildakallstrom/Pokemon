@@ -6,12 +6,8 @@ import { Router } from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.css']
 })
-export class LoginPage implements OnInit {
-
+export class LoginPage {
   constructor(private readonly router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   handleLogin(): void {
     this.router.navigateByUrl("/pokemons");

@@ -14,26 +14,22 @@ export class LoginFormComponent {
 
   @Output() login: EventEmitter<void> = new EventEmitter();
 
-//dependency injection
   constructor(
     private readonly loginService: LoginService,
     private readonly trainerService: TrainerService
     ) { }
-
+  
+  /* Form submit */
   public loginSubmit(loginForm: NgForm): void {
+    const { username } = loginForm.value; 
 
-    //username
-    const { username } = loginForm.value;
-
+    // login user, emit login event
     this.loginService.login(username)
-    .subscribe({
-      next: (trainer: Trainer) => {
-       this.trainerService.trainer = trainer;
-       this.login.emit();
-      },
-      error: () => {
-        //handle that locally
-      }
+      .subscribe({
+        next: (trainer: Trainer) => {
+          this.trainerService.trainer = trainer;
+          this.login.emit();
+        }
     })
   }
 

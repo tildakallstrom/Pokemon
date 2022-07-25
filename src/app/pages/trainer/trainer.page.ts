@@ -26,7 +26,8 @@ export class TrainerPage{
     return [];  // no pokemon
   }
 
-  logout() {
+  /* Log out current user and refresh page (redirecting to login page) */
+  public logout(): void {
     StorageUtil.storageDelete(StorageKeys.Trainer)
     location.reload()
   }

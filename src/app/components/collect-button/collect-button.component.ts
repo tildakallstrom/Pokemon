@@ -13,34 +13,32 @@ import { Pokemon } from 'src/app/models/pokemon.model';
 export class CollectButtonComponent implements OnInit {
 
   public loading: boolean = false;
-
   public isCollected: boolean = false;
 
   @Input() pokemon!: Pokemon;
 
   constructor(
     private trainerService: TrainerService,
-    private readonly favouriteService: CollectService
+    private readonly collectionService: CollectService
   ) { }
 
   ngOnInit(): void {
-    //inputs are resolved
     this.isCollected = this.trainerService.inCollection(this.pokemon.name);
   }
 
+  /* Collect pokemon */
   onCollectClick(): void {
     this.loading = true;
-    //add guitar to the favourites
-    this.favouriteService.addToCollection(this.pokemon)
-    .subscribe({
-      next: (trainer: Trainer) => {
-        this.loading = false;
-        this.isCollected = this.trainerService.inCollection(this.pokemon.name);
-      },
-      error: (error: HttpErrorResponse) => {
-       console.log("Error", error.message);
-      }
-    })
-  }
 
+    this.collectionService.addToCollection(this.pokemon)
+      .subscribe({
+        next: () => {
+          this.loading = false;
+          this.isCollected = this.trainerService.inCollection(this.pokemon.name);
+        },
+        error: (error: HttpErrorResponse) => {
+        console.log("Error", error.message);
+        }
+      })
+  }
 }

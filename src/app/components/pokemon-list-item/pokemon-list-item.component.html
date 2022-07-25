@@ -3,9 +3,17 @@
     <section class="p-4">
     </section>
     <section class="p-4">
+        <!-- make first character uppercase followed by the rest of the name -->
         <h1 class="text-2xl">{{ pokemon.name[0].toUpperCase() + pokemon.name.substring(1) }} </h1>
+
+        <!-- 
+            get image based on pokemon id
+            if there was no image call 'setDefaultImage' 
+                which inserts 0 into src as id
+            write pokemon id and name as alt 
+        -->
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" 
-            (error)="setDefaultImage($event)" 
+            (error)="setDefaultImage($event)"
             alt="Id: {{pokemon.id}}, Name: {{ pokemon.name}}"
         />
     </section>

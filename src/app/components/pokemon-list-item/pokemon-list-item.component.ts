@@ -10,6 +10,7 @@ export class PokemonListItemComponent  {
 
   @Input() pokemon!: Pokemon;
 
+  // set default to '?' icon from api
   setDefaultImage(event: Event) {
     (event.target as HTMLImageElement).src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png"
   }

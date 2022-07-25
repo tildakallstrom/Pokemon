@@ -10,35 +10,29 @@ const { apiTrainers, apiKey } = environment;
   providedIn: 'root'
 })
 export class LoginService {
-
-  //dependency injection
   constructor(private readonly http: HttpClient) { }
 
-  //Modules, HttpClient, observables, and RxJS operators
   public login(username: string): Observable<Trainer> {
-    return this.checkUsername(username)
+    return this.checkUsername(username)           // check if user exists
     .pipe(
       switchMap((user: Trainer | undefined) => {
-         if (user === undefined) { //user doesnt exist
-          return this.createUser(username);
+         if (user === undefined) {             
+          return this.createUser(username);       // create new user if not
          }
          return of(user);
       })
     )
   }
 
-  //login
-
-  //check if user exists
+  /* Check if user exists */
   private checkUsername(username: string): Observable<Trainer | undefined> {
     return this.http.get<Trainer[]>(`${apiTrainers}?username=${username}`)
      .pipe(
-      //Rxjs operators
-      map((response: Trainer[]) => response.pop())
+        map((response: Trainer[]) => response.pop())
      )
   }
 
-  //if user doesnt exist - create user
+  /* Create new user and post to api */
   private createUser(username: string): Observable<Trainer> {
     // user
     const trainer = {
@@ -55,9 +49,5 @@ export class LoginService {
     return this.http.post<Trainer>(apiTrainers, trainer, {
       headers
     })
-
-    //POST - create items on the server
   }
-  
-  //if user exists or is created - store user
 }

@@ -1,5 +1,6 @@
 <ul>
-    <app-pokemon-list-item 
-    *ngFor="let p of pokemon"
-    [pokemon]="p"></app-pokemon-list-item>
+    <!-- generate one list item for each pokemon -->
+    <app-pokemon-list-item
+        *ngFor="let p of pokemon"
+        [pokemon]="p"></app-pokemon-list-item>
 </ul>

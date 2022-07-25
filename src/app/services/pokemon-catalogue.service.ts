@@ -34,16 +34,16 @@ export class PokemonCatalogueService {
   
   offset: number = count
 
-  private extractIdFromUrl(url: string): string {
-    let start = url.length - 2;                       // url always ends with '/' so start at last digit
-
-    for (let i = start; url[i] !== '/'; i--)          // find index of first digit
-      start = i
-    
-    return url.substring(start, url.length - 1)       // return pokemon id
-  }
-
   public findAllPokemons(): void {
+    function extractIdFromUrl(url: string): string {
+      let start = url.length - 2;                       // url always ends with '/' so start at last digit
+  
+      for (let i = start; url[i] !== '/'; i--)          // find index of first digit
+        start = i
+      
+      return url.substring(start, url.length - 1)       // return pokemon id
+    }
+
     if (this._pokemon.length > 0 || this.loading) 
       return
       
@@ -63,10 +63,11 @@ export class PokemonCatalogueService {
         .subscribe((response: any) => {
           const { results } = response
 
+          // map results to array of pokemon
           const allPokemon = results.map((pokemon : Pokemon) =>  {
             return {
               ...pokemon,
-              id: this.extractIdFromUrl(pokemon.url)
+              id: extractIdFromUrl(pokemon.url)
             }
           })
 
@@ -78,6 +79,7 @@ export class PokemonCatalogueService {
     else this._pokemon = pokemon.slice(0, count)  // assign pokemon if found in storage
   }
   
+  /* add the next <count> pokemon to pokemon array */
   public loadMorePokemon() :  void {
     const pokemon = StorageUtil.storageRead<Pokemon[]>(StorageKeys.Pokemon)
 
@@ -86,7 +88,7 @@ export class PokemonCatalogueService {
     this._pokemon = pokemon.slice(0, this.offset += count)
   }
 
-  //get pokemon based on name
+  // check whether pokemon exists
   public pokemonExists(name: string): boolean {
     return this._pokemon.some((p : Pokemon) => p.name === name);
   }

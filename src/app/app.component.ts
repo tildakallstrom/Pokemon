@@ -13,10 +13,12 @@ export class AppComponent implements OnInit {
     private readonly pokemonService: PokemonCatalogueService
   ) {}
   
+  /* Load all pokemon when app starts */
   ngOnInit(): void {
     if (this.trainerService.trainer) {
       this.pokemonService.findAllPokemons();
     }
   }
+
   title = 'Pokemon';
 }

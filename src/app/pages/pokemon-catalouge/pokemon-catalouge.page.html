@@ -1,12 +1,15 @@
 <main class="container mx-auto p-10 pokemon">
     <p *ngIf=""loading>Loading pokemons...</p>
     
+        <!-- 
+            infinite scroll (load some items at a time)
+            distance: 2 -> 2 * 10% = 20% from bottom of window
+            pass pokemon to list
+        -->
         <app-pokemon-list infiniteScroll
-        [infiniteScrollDistance]="2"
-        (scrolled)="loadMorePokemon()"
+            [infiniteScrollDistance]="2"
+            (scrolled)="loadMorePokemon()"
             [pokemon]="pokemon" ></app-pokemon-list>
-    
+        
         <button class="scroll-to-top" (click)="scrollToTop()">^</button>
-        
-        
 </main> 

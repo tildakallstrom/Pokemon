@@ -20,7 +20,7 @@ export class CollectService {
     private readonly trainerService: TrainerService,
   ) { }
  
-
+  /* Add pokemon to collection */
   public addToCollection(pokemon: Pokemon): Observable<Trainer>{
     if(!this.trainerService.trainer) {
       throw new Error("There is no trainer.");
@@ -30,23 +30,23 @@ export class CollectService {
 
     if (!this.pokemonService.pokemonExists(pokemon.name)) {
       throw new Error("addToCollection: No pokemon with name: " + pokemon)
-    
     }
     
+    // toggle collected-status 
     if (this.trainerService.inCollection(pokemon.name)) {
       this.trainerService.removeFromCollection(pokemon.name);
-      } else {
-        this.trainerService.addToCollection(pokemon);
-      }
+    } else {
+      this.trainerService.addToCollection(pokemon);
+    }
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'x-api-key': apiKey
     })
 
-
+    // update trainer
     return this.http.patch<Trainer>(`${apiTrainers}/${trainer.id}`, {
-      pokemon: [...trainer.pokemon] //already updated
+      pokemon: [...trainer.pokemon] 
     }, {
       headers
     })
@@ -56,5 +56,4 @@ export class CollectService {
       })
     )
   }
-
 }

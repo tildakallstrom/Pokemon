@@ -3,15 +3,20 @@
     (click)="onCollectClick()"
     class="border border-slate-300 rounded flex justify-center items-center p-3 text-pink-800">
     
+    <!-- spinner icon whilst loading -->
     <ng-container *ngIf="!loading; else spinner">
 
+    <!-- different icon if collected already -->
     <ng-container *ngIf="isCollected; then collect else notCollected" class="material-icons"></ng-container>
+
     <ng-template #collect>
         <span class="material-icons">check_circle</span>
     </ng-template>
+
     <ng-template #notCollected>
         <span class="material-icons">add_circle</span>
     </ng-template>
+
 </ng-container>
 
 <ng-container>
