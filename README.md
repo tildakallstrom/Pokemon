@@ -1,6 +1,8 @@
 # Pokemon
 
 Pokémon trainer app with a login, a pokémon catalouge page where the user can see all the pokémons and a trainer page where the user can see all the pokémons that he has collected.
+##
+Link to app: https://ng-pokemon-app.herokuapp.com/login
 
 # Contributors
 
