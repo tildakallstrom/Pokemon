@@ -21,22 +21,22 @@ export class CollectService {
   ) { }
  
 
-  public addToCollection(pokemonName: string): Observable<Trainer>{
+  public addToCollection(pokemon: Pokemon): Observable<Trainer>{
     if(!this.trainerService.trainer) {
       throw new Error("There is no trainer.");
     }
 
     const trainer: Trainer = this.trainerService.trainer;
 
-    if (!this.pokemonService.pokemonExists(pokemonName)) {
-      throw new Error("addToCollection: No pokemon with name: " + pokemonName)
+    if (!this.pokemonService.pokemonExists(pokemon.name)) {
+      throw new Error("addToCollection: No pokemon with name: " + pokemon)
     
     }
     
-    if (this.trainerService.inCollection(pokemonName)) {
-      this.trainerService.removeFromCollection(pokemonName);
+    if (this.trainerService.inCollection(pokemon.name)) {
+      this.trainerService.removeFromCollection(pokemon.name);
       } else {
-        this.trainerService.addToCollection(pokemonName);
+        this.trainerService.addToCollection(pokemon);
       }
 
     const headers = new HttpHeaders({

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StorageKeys } from '../enums/storage-keys.enum';
+import { Pokemon } from '../models/pokemon.model';
 import { Trainer } from '../models/trainer.model';
 import { StorageUtil } from '../utils/storage.util';
 
@@ -25,23 +26,22 @@ export class TrainerService {
     
      // collected var satt som pokemon - men ska vara istället för favourites 
 
-     public inCollection(pokemonId: string): boolean {
+     public inCollection(pokemonName: string): boolean {
       if (this._trainer) {
-        return Boolean(this.trainer?.pokemon.find((pokemonName: string) => pokemonName === pokemonName));
+        return Boolean(this.trainer?.pokemon.find((name: string) => name === pokemonName));
       }
       return false;
      }
   
-     public addToCollection(pokemonName: string): void {
+     public addToCollection(pokemon: Pokemon): void {
       if (this._trainer) {
-        this._trainer.pokemon.push(pokemonName);
+        this._trainer.pokemon.push(pokemon.name);
       }
      }
 
      public removeFromCollection(pokemonName: string): void {
       if (this._trainer) {
-        
-        this._trainer.pokemon = this._trainer.pokemon.filter((name: string) => name !== pokemonName);
+        this._trainer.pokemon = this._trainer.pokemon.filter(name => name !== pokemonName);
       }
      }
 }

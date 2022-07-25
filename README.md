@@ -6,7 +6,6 @@ Pokémon trainer app with a login, a pokémon catalouge page where the user can 
 
 This app was created by @tildakallstrom (Tilda Källström) and @emil-h-uhlin (Emil Uhlin).
 
-
 # Pokemon
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.

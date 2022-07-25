@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageKeys } from 'src/app/enums/storage-keys.enum';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { Trainer } from 'src/app/models/trainer.model';
 import { TrainerService} from 'src/app/services/trainer.service';
+import { StorageUtil } from 'src/app/utils/storage.util';
 
 @Component({
   selector: 'app-profile',
@@ -14,11 +16,14 @@ export class TrainerPage{
     return this.trainerService.trainer;
   }
 
-  get pokemon(): string[] { 
+  get pokemon(): Pokemon[] {
     if(this.trainerService.trainer) {
-      return this.trainerService.trainer.pokemon
+      return StorageUtil.storageRead<Pokemon[]>(StorageKeys.Pokemon)!.filter(pokemon => {
+        return this.trainerService.trainer?.pokemon.includes(pokemon.name)
+      })
     }
-    return [];
+
+    return [];  // no pokemon
   }
 
   constructor(

@@ -3,6 +3,7 @@ import { CollectService } from 'src/app/services/collect.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Trainer } from 'src/app/models/trainer.model';
 import { TrainerService } from 'src/app/services/trainer.service';
+import { Pokemon } from 'src/app/models/pokemon.model';
 
 @Component({
   selector: 'app-collect-button',
@@ -15,8 +16,7 @@ export class CollectButtonComponent implements OnInit {
 
   public isCollected: boolean = false;
 
-  @Input() pokemonName: string = "";
-
+  @Input() pokemon!: Pokemon;
 
   constructor(
     private trainerService: TrainerService,
@@ -25,17 +25,17 @@ export class CollectButtonComponent implements OnInit {
 
   ngOnInit(): void {
     //inputs are resolved
-    this.isCollected = this.trainerService.inCollection(this.pokemonName);
+    this.isCollected = this.trainerService.inCollection(this.pokemon.name);
   }
 
   onCollectClick(): void {
     this.loading = true;
     //add guitar to the favourites
-    this.favouriteService.addToCollection(this.pokemonName)
+    this.favouriteService.addToCollection(this.pokemon)
     .subscribe({
       next: (trainer: Trainer) => {
         this.loading = false;
-        this.isCollected = this.trainerService.inCollection(this.pokemonName);
+        this.isCollected = this.trainerService.inCollection(this.pokemon.name);
       },
       error: (error: HttpErrorResponse) => {
        console.log("Error", error.message);
